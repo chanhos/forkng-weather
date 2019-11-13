@@ -9,13 +9,18 @@ import Weather from './Weather';
 const API_KEY = "ee6701ef2752bf911a0b6a4ec88d9314" ; 
 
 export default class  extends Component {
-  state = {
-    isLoading : true , 
-    temp : 0,
-    condition : "" ,
-  }
+  constructor(props){
+    super(props) ;
 
-  getWeather = async(latitude , longitude ) => {
+    this.state = {
+      isLoading : true , 
+      temp : 0 ,
+      condition : "" 
+    }
+  }
+  
+
+  getWeather = async( latitude , longitude ) => {
     const { data : { 
               main : { temp } , 
               weather 
@@ -40,26 +45,23 @@ export default class  extends Component {
         coords : { latitude , longitude }
       } = await Location.getCurrentPositionAsync();
       
-      console.log(latitude, longitude) ; 
       this.getWeather(latitude , longitude ) ; 
-      this.setState( { isLoading : false }) ;
-      // Send to API and get Weather
-      
-      //console.log(coords.latitude , coords.longitude) ; 
+    
     } catch(error) {
       Alert.alert("Cant't find you" ,"So sad") ; 
     }
     
   };
   
-  componentDidMount(){
+  componentDidMount()
+  {
     this.getLocation();
   }
   
   render(){
     const { isLoading , temp , condition } = this.state ;  
 
-    return isLoading ? <Loading />  : <Weather temp={temp} condition={condition}/> ; 
+    return isLoading ? <Loading />  : <Weather temp={temp} condition={condition} /> ; 
   }
 }
 
