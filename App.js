@@ -6,7 +6,7 @@ import axios from 'axios' ;
 import Weather from './Weather';
 
 
-const API_KEY = "ee6701ef2752bf911a0b6a4ec88d9314" ; 
+// const API_KEY = "-" ; 
 
 export default class  extends Component {
   constructor(props){
@@ -26,7 +26,7 @@ export default class  extends Component {
               weather 
                    } 
           } = await axios.get(
-      `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
+      // --`
     );
     //var tempTonum = temp.toFixed(1) ; 
     console.log(weather[0].main) ; 
